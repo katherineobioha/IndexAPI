@@ -184,7 +184,7 @@ font-style: italic;
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="you@your-company.com">you@your-company.com</a></div>
     <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/Searchin/Test/1.0.0</div>
+    <div class="app-desc">BasePath:/Searchin/index/1.0.0</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -194,22 +194,23 @@ font-style: italic;
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
-  <h4><a href="#Admins">Admins</a></h4>
-  <ul>
-  <li><a href="#addInventory"><code><span class="http-method">post</span> /inventory</code></a></li>
-  </ul>
   <h4><a href="#Developers">Developers</a></h4>
   <ul>
-  <li><a href="#searchInventory"><code><span class="http-method">get</span> /inventory</code></a></li>
+  <li><a href="#addproducts"><code><span class="http-method">post</span> /addproducts</code></a></li>
+  <li><a href="#getproduct"><code><span class="http-method">get</span> /getproductprofile</code></a></li>
+  <li><a href="#getuser"><code><span class="http-method">get</span> /getuserprofile</code></a></li>
+  <li><a href="#login"><code><span class="http-method">post</span> /login</code></a></li>
+  <li><a href="#searchproducts"><code><span class="http-method">get</span> /search</code></a></li>
+  <li><a href="#signup"><code><span class="http-method">post</span> /signup</code></a></li>
   </ul>
 
-  <h1><a name="Admins">Admins</a></h1>
-  <div class="method"><a name="addInventory"/>
+  <h1><a name="Developers">Developers</a></h1>
+  <div class="method"><a name="addproducts"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /inventory</code></pre></div>
-    <div class="method-summary">adds an inventory item (<span class="nickname">addInventory</span>)</div>
-    <div class="method-notes">Adds an item to the system</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /addproducts</code></pre></div>
+    <div class="method-summary">add products to system (<span class="nickname">addproducts</span>)</div>
+    <div class="method-notes">By passing product information to the system to be added</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -220,9 +221,9 @@ font-style: italic;
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">inventoryItem <a href="#InventoryItem">InventoryItem</a> (optional)</div>
+      <div class="param">product <a href="#product">product</a> (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Inventory item to add </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The product to add. </div>
 
     </div>  <!-- field-items -->
 
@@ -252,14 +253,12 @@ font-style: italic;
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Developers">Developers</a></h1>
-  <div class="method"><a name="searchInventory"/>
+  <div class="method"><a name="getproduct"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /inventory</code></pre></div>
-    <div class="method-summary">searches inventory (<span class="nickname">searchInventory</span>)</div>
-    <div class="method-notes">By passing in the appropriate options, you can search for
-available inventory in the system</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /getproductprofile</code></pre></div>
+    <div class="method-summary">get product information (<span class="nickname">getproduct</span>)</div>
+    <div class="method-notes">By passing in the appropriate options, you can get product information</div>
 
 
 
@@ -267,19 +266,15 @@ available inventory in the system</div>
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">searchString (optional)</div>
+      <div class="param">productid (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an optional search string for looking up inventory </div><div class="param">skip (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; number of records to skip for pagination format: int32</div><div class="param">limit (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return format: int32</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the productid format: int32</div>
     </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#InventoryItem">InventoryItem</a>]
+      array[<a href="#ProductItem">ProductItem</a>]
       
     </div>
 
@@ -288,22 +283,163 @@ available inventory in the system</div>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "releaseDate" : "2016-08-29T09:12:33.001Z",
-  "name" : "Widget Adapter",
+  "hours" : [ {
+    "Monday" : "10:00AM - 5:00PM"
+  }, {
+    "Tuesday" : "10:00AM - 5:00PM"
+  }, {
+    "Wednesday" : "10:00AM - 5:00PM"
+  }, {
+    "Thursday" : "10:00AM - 5:00PM"
+  }, {
+    "Friday" : "10:00AM - 5:00PM"
+  } ],
+  "website" : "www.alar.com",
+  "reviews" : {
+    "review" : "This product is good"
+  },
+  "phone" : "223-454-9339",
+  "price" : "$$$",
+  "ratings" : 3,
+  "name" : "Alara",
+  "location" : "233 E drive, lagos, USA",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
-  "manufacturer" : {
-    "phone" : "408-867-5309",
-    "name" : "ACME Corporation",
-    "homePage" : "https://www.acme-corp.com"
+  "services" : "Clothing, fashion",
+  "miles" : "2.3 mi"
+}, {
+  "hours" : [ {
+    "Monday" : "10:00AM - 5:00PM"
+  }, {
+    "Tuesday" : "10:00AM - 5:00PM"
+  }, {
+    "Wednesday" : "10:00AM - 5:00PM"
+  }, {
+    "Thursday" : "10:00AM - 5:00PM"
+  }, {
+    "Friday" : "10:00AM - 5:00PM"
+  } ],
+  "website" : "www.alar.com",
+  "reviews" : {
+    "review" : "This product is good"
+  },
+  "phone" : "223-454-9339",
+  "price" : "$$$",
+  "ratings" : 3,
+  "name" : "Alara",
+  "location" : "233 E drive, lagos, USA",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "services" : "Clothing, fashion",
+  "miles" : "2.3 mi"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">400</h4>
+    bad input parameter
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getuser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /getuserprofile</code></pre></div>
+    <div class="method-summary">get user information (<span class="nickname">getuser</span>)</div>
+    <div class="method-notes">By passing in the appropriate options, you can get users information</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">userid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the userid format: int32</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#User">User</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "password" : "kobbi",
+  "phone" : "466-788-0909",
+  "name" : "Katherine O",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "email" : "kato@gmail.com",
+  "username" : "kobio",
+  "products" : {
+    "hours" : [ {
+      "Monday" : "10:00AM - 5:00PM"
+    }, {
+      "Tuesday" : "10:00AM - 5:00PM"
+    }, {
+      "Wednesday" : "10:00AM - 5:00PM"
+    }, {
+      "Thursday" : "10:00AM - 5:00PM"
+    }, {
+      "Friday" : "10:00AM - 5:00PM"
+    } ],
+    "website" : "www.alar.com",
+    "reviews" : {
+      "review" : "This product is good"
+    },
+    "phone" : "223-454-9339",
+    "price" : "$$$",
+    "ratings" : 3,
+    "name" : "Alara",
+    "location" : "233 E drive, lagos, USA",
+    "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "services" : "Clothing, fashion",
+    "miles" : "2.3 mi"
   }
 }, {
-  "releaseDate" : "2016-08-29T09:12:33.001Z",
-  "name" : "Widget Adapter",
+  "password" : "kobbi",
+  "phone" : "466-788-0909",
+  "name" : "Katherine O",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
-  "manufacturer" : {
-    "phone" : "408-867-5309",
-    "name" : "ACME Corporation",
-    "homePage" : "https://www.acme-corp.com"
+  "email" : "kato@gmail.com",
+  "username" : "kobio",
+  "products" : {
+    "hours" : [ {
+      "Monday" : "10:00AM - 5:00PM"
+    }, {
+      "Tuesday" : "10:00AM - 5:00PM"
+    }, {
+      "Wednesday" : "10:00AM - 5:00PM"
+    }, {
+      "Thursday" : "10:00AM - 5:00PM"
+    }, {
+      "Friday" : "10:00AM - 5:00PM"
+    } ],
+    "website" : "www.alar.com",
+    "reviews" : {
+      "review" : "This product is good"
+    },
+    "phone" : "223-454-9339",
+    "price" : "$$$",
+    "ratings" : 3,
+    "name" : "Alara",
+    "location" : "233 E drive, lagos, USA",
+    "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "services" : "Clothing, fashion",
+    "miles" : "2.3 mi"
   }
 } ]</code></pre>
 
@@ -323,39 +459,373 @@ available inventory in the system</div>
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
+  <div class="method"><a name="login"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary">authenticates user (<span class="nickname">login</span>)</div>
+    <div class="method-notes">By passing the username and password user can be authenticated</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">userlogincredentials <a href="#userlogincredentials">userlogincredentials</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The user to log in. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#User">User</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "password" : "kobbi",
+  "phone" : "466-788-0909",
+  "name" : "Katherine O",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "email" : "kato@gmail.com",
+  "username" : "kobio",
+  "products" : {
+    "hours" : [ {
+      "Monday" : "10:00AM - 5:00PM"
+    }, {
+      "Tuesday" : "10:00AM - 5:00PM"
+    }, {
+      "Wednesday" : "10:00AM - 5:00PM"
+    }, {
+      "Thursday" : "10:00AM - 5:00PM"
+    }, {
+      "Friday" : "10:00AM - 5:00PM"
+    } ],
+    "website" : "www.alar.com",
+    "reviews" : {
+      "review" : "This product is good"
+    },
+    "phone" : "223-454-9339",
+    "price" : "$$$",
+    "ratings" : 3,
+    "name" : "Alara",
+    "location" : "233 E drive, lagos, USA",
+    "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "services" : "Clothing, fashion",
+    "miles" : "2.3 mi"
+  }
+}, {
+  "password" : "kobbi",
+  "phone" : "466-788-0909",
+  "name" : "Katherine O",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "email" : "kato@gmail.com",
+  "username" : "kobio",
+  "products" : {
+    "hours" : [ {
+      "Monday" : "10:00AM - 5:00PM"
+    }, {
+      "Tuesday" : "10:00AM - 5:00PM"
+    }, {
+      "Wednesday" : "10:00AM - 5:00PM"
+    }, {
+      "Thursday" : "10:00AM - 5:00PM"
+    }, {
+      "Friday" : "10:00AM - 5:00PM"
+    } ],
+    "website" : "www.alar.com",
+    "reviews" : {
+      "review" : "This product is good"
+    },
+    "phone" : "223-454-9339",
+    "price" : "$$$",
+    "ratings" : 3,
+    "name" : "Alara",
+    "location" : "233 E drive, lagos, USA",
+    "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "services" : "Clothing, fashion",
+    "miles" : "2.3 mi"
+  }
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    user logged in
+        
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    invalid user
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchproducts"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /search</code></pre></div>
+    <div class="method-summary">searches products (<span class="nickname">searchproducts</span>)</div>
+    <div class="method-notes">By passing in the appropriate options, you can search for
+products in the system</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the search name or description </div><div class="param">limit (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return format: int32</div><div class="param">location (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the current location of device/user </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ProductItem">ProductItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "hours" : [ {
+    "Monday" : "10:00AM - 5:00PM"
+  }, {
+    "Tuesday" : "10:00AM - 5:00PM"
+  }, {
+    "Wednesday" : "10:00AM - 5:00PM"
+  }, {
+    "Thursday" : "10:00AM - 5:00PM"
+  }, {
+    "Friday" : "10:00AM - 5:00PM"
+  } ],
+  "website" : "www.alar.com",
+  "reviews" : {
+    "review" : "This product is good"
+  },
+  "phone" : "223-454-9339",
+  "price" : "$$$",
+  "ratings" : 3,
+  "name" : "Alara",
+  "location" : "233 E drive, lagos, USA",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "services" : "Clothing, fashion",
+  "miles" : "2.3 mi"
+}, {
+  "hours" : [ {
+    "Monday" : "10:00AM - 5:00PM"
+  }, {
+    "Tuesday" : "10:00AM - 5:00PM"
+  }, {
+    "Wednesday" : "10:00AM - 5:00PM"
+  }, {
+    "Thursday" : "10:00AM - 5:00PM"
+  }, {
+    "Friday" : "10:00AM - 5:00PM"
+  } ],
+  "website" : "www.alar.com",
+  "reviews" : {
+    "review" : "This product is good"
+  },
+  "phone" : "223-454-9339",
+  "price" : "$$$",
+  "ratings" : 3,
+  "name" : "Alara",
+  "location" : "233 E drive, lagos, USA",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "services" : "Clothing, fashion",
+  "miles" : "2.3 mi"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">400</h4>
+    bad input parameter
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="signup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /signup</code></pre></div>
+    <div class="method-summary">signs up new user (<span class="nickname">signup</span>)</div>
+    <div class="method-notes">By passing the user information to be signed up to application</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">usersignupdetails <a href="#usersignupdetails">usersignupdetails</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The user to sign up. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    item created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
 
   <h2><a name="__Models">Models</a></h2>
   [ Jump to <a href="#__Methods">Methods</a> ]
 
   <h3>Table of Contents</h3>
   <ol>
-    <li><a href="#InventoryItem"><code>InventoryItem</code> - </a></li>
-    <li><a href="#Manufacturer"><code>Manufacturer</code> - </a></li>
+    <li><a href="#ProductItem"><code>ProductItem</code> - </a></li>
+    <li><a href="#Reviews"><code>Reviews</code> - </a></li>
+    <li><a href="#User"><code>User</code> - </a></li>
+    <li><a href="#product"><code>product</code> - </a></li>
+    <li><a href="#userlogincredentials"><code>userlogincredentials</code> - </a></li>
+    <li><a href="#usersignupdetails"><code>usersignupdetails</code> - </a></li>
   </ol>
 
   <div class="model">
-    <h3><a name="InventoryItem"><code>InventoryItem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="ProductItem"><code>ProductItem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
           <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Widget Adapter</span></div>
-<div class="param">releaseDate </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-          <div class="param-desc"><span class="param-type">example: 2016-08-29T09:12:33.001Z</span></div>
-<div class="param">manufacturer </div><div class="param-desc"><span class="param-type"><a href="#Manufacturer">Manufacturer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Alara</span></div>
+<div class="param">services </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Clothing, fashion</span></div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: $$$</span></div>
+<div class="param">hours </div><div class="param-desc"><span class="param-type"><a href="#object">array[Object]</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: [{"Monday":"10:00AM - 5:00PM"},{"Tuesday":"10:00AM - 5:00PM"},{"Wednesday":"10:00AM - 5:00PM"},{"Thursday":"10:00AM - 5:00PM"},{"Friday":"10:00AM - 5:00PM"}]</span></div>
+<div class="param">phone </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 223-454-9339</span></div>
+<div class="param">location </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 233 E drive, lagos, USA</span></div>
+<div class="param">website </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+          <div class="param-desc"><span class="param-type">example: www.alar.com</span></div>
+<div class="param">ratings </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+<div class="param">reviews </div><div class="param-desc"><span class="param-type"><a href="#Reviews">Reviews</a></span>  </div>
+<div class="param">userid </div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">miles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2.3 mi</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Manufacturer"><code>Manufacturer</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="Reviews"><code>Reviews</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
+      <div class="param">review </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: This product is good</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+          <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Katherine O</span></div>
+<div class="param">phone </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 466-788-0909</span></div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: kato@gmail.com</span></div>
+<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: kobio</span></div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: kobbi</span></div>
+<div class="param">products </div><div class="param-desc"><span class="param-type"><a href="#ProductItem">ProductItem</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="product"><code>product</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
       <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: ACME Corporation</span></div>
-<div class="param">homePage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
-          <div class="param-desc"><span class="param-type">example: https://www.acme-corp.com</span></div>
-<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 408-867-5309</span></div>
+<div class="param">services </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hours </div><div class="param-desc"><span class="param-type"><a href="#object">array[Object]</a></span>  </div>
+<div class="param">location </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">website </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="userlogincredentials"><code>userlogincredentials</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">userName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="usersignupdetails"><code>usersignupdetails</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">userName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">firstname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">phone </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>
