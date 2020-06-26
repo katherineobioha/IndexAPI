@@ -305,6 +305,7 @@ font-style: italic;
   "location" : "233 E drive, lagos, USA",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "services" : "Clothing, fashion",
+  "email" : "hello@alar.com",
   "miles" : "2.3 mi"
 }, {
   "hours" : [ {
@@ -329,6 +330,7 @@ font-style: italic;
   "location" : "233 E drive, lagos, USA",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "services" : "Clothing, fashion",
+  "email" : "hello@alar.com",
   "miles" : "2.3 mi"
 } ]</code></pre>
 
@@ -379,11 +381,13 @@ font-style: italic;
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
   "password" : "kobbi",
+  "firstname" : "katherine",
   "phone" : "466-788-0909",
   "name" : "Katherine O",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "email" : "kato@gmail.com",
   "username" : "kobio",
+  "lastname" : "Obioha",
   "products" : {
     "hours" : [ {
       "Monday" : "10:00AM - 5:00PM"
@@ -407,15 +411,18 @@ font-style: italic;
     "location" : "233 E drive, lagos, USA",
     "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
     "services" : "Clothing, fashion",
+    "email" : "hello@alar.com",
     "miles" : "2.3 mi"
   }
 }, {
   "password" : "kobbi",
+  "firstname" : "katherine",
   "phone" : "466-788-0909",
   "name" : "Katherine O",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "email" : "kato@gmail.com",
   "username" : "kobio",
+  "lastname" : "Obioha",
   "products" : {
     "hours" : [ {
       "Monday" : "10:00AM - 5:00PM"
@@ -439,6 +446,7 @@ font-style: italic;
     "location" : "233 E drive, lagos, USA",
     "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
     "services" : "Clothing, fashion",
+    "email" : "hello@alar.com",
     "miles" : "2.3 mi"
   }
 } ]</code></pre>
@@ -496,11 +504,13 @@ font-style: italic;
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
   "password" : "kobbi",
+  "firstname" : "katherine",
   "phone" : "466-788-0909",
   "name" : "Katherine O",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "email" : "kato@gmail.com",
   "username" : "kobio",
+  "lastname" : "Obioha",
   "products" : {
     "hours" : [ {
       "Monday" : "10:00AM - 5:00PM"
@@ -524,15 +534,18 @@ font-style: italic;
     "location" : "233 E drive, lagos, USA",
     "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
     "services" : "Clothing, fashion",
+    "email" : "hello@alar.com",
     "miles" : "2.3 mi"
   }
 }, {
   "password" : "kobbi",
+  "firstname" : "katherine",
   "phone" : "466-788-0909",
   "name" : "Katherine O",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "email" : "kato@gmail.com",
   "username" : "kobio",
+  "lastname" : "Obioha",
   "products" : {
     "hours" : [ {
       "Monday" : "10:00AM - 5:00PM"
@@ -556,6 +569,7 @@ font-style: italic;
     "location" : "233 E drive, lagos, USA",
     "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
     "services" : "Clothing, fashion",
+    "email" : "hello@alar.com",
     "miles" : "2.3 mi"
   }
 } ]</code></pre>
@@ -595,7 +609,7 @@ products in the system</div>
     <div class="field-items">
       <div class="param">name (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the search name or description </div><div class="param">limit (required)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; passes the search name or description </div><div class="param">limit (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return format: int32</div><div class="param">location (optional)</div>
 
@@ -636,6 +650,7 @@ products in the system</div>
   "location" : "233 E drive, lagos, USA",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "services" : "Clothing, fashion",
+  "email" : "hello@alar.com",
   "miles" : "2.3 mi"
 }, {
   "hours" : [ {
@@ -660,6 +675,7 @@ products in the system</div>
   "location" : "233 E drive, lagos, USA",
   "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
   "services" : "Clothing, fashion",
+  "email" : "hello@alar.com",
   "miles" : "2.3 mi"
 } ]</code></pre>
 
@@ -761,10 +777,11 @@ products in the system</div>
           <div class="param-desc"><span class="param-type">example: 233 E drive, lagos, USA</span></div>
 <div class="param">website </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
           <div class="param-desc"><span class="param-type">example: www.alar.com</span></div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: hello@alar.com</span></div>
 <div class="param">ratings </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 3</span></div>
 <div class="param">reviews </div><div class="param-desc"><span class="param-type"><a href="#Reviews">Reviews</a></span>  </div>
-<div class="param">userid </div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
 <div class="param">miles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 2.3 mi</span></div>
     </div>  <!-- field-items -->
@@ -793,7 +810,11 @@ products in the system</div>
           <div class="param-desc"><span class="param-type">example: kobio</span></div>
 <div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: kobbi</span></div>
-<div class="param">products </div><div class="param-desc"><span class="param-type"><a href="#ProductItem">ProductItem</a></span>  </div>
+<div class="param">firstname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: katherine</span></div>
+<div class="param">lastname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Obioha</span></div>
+<div class="param">products (optional)</div><div class="param-desc"><span class="param-type"><a href="#ProductItem">ProductItem</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
